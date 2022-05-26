@@ -22,6 +22,7 @@ export class DishdetailsComponent implements OnInit {
   @ViewChild('cForm') commentFormDirective;
   commentForm: FormGroup;
   comment: Comment;
+  dishcopy: Dish;
 
   formErrors = {
     'author': '',
@@ -52,7 +53,7 @@ export class DishdetailsComponent implements OnInit {
       .subscribe((dishIds) => this.dishIds = dishIds);
     this.route.params
       .pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id)},
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id)},
        errmess => this.errMess = <any>errmess );
   }
 
@@ -69,14 +70,32 @@ export class DishdetailsComponent implements OnInit {
   createForm() {
     this.commentForm = this.fb.group({
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      comment: ['', [Validators.required, Validators.minLength(2)]],
-      rating: 5
+      rating: 5,
+      comment: ['', [Validators.required, Validators.minLength(2)]]
     });
 
     this.commentForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged(); // resetear
+  }
+
+  onSubmit() {
+    this.comment = this.commentForm.value;
+    this.comment.date = new Date().toISOString();
+    console.log(this.comment);
+    this.dishcopy.comments.push(this.comment);
+    this.dishService.putDish(this.dishcopy)
+      .subscribe(dish => {
+        this.dish = dish; this.dishcopy = dish;
+      },
+      errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
+    this.commentFormDirective.resetForm();
+    this.commentForm.reset ({
+      author: '',
+      comment: '',
+      rating: 5
+    });
   }
 
   onValueChanged(data?: any) {
@@ -98,18 +117,4 @@ export class DishdetailsComponent implements OnInit {
       }
     }
   }
-
-  onSubmit() {
-    this.comment = this.commentForm.value;
-    this.comment.date = new Date().toISOString();
-    this.dish.comments.push(this.comment);
-    console.log(this.comment);
-    this.comment = null;
-    this.commentForm.reset({
-      author: '',
-      comment: '',
-      rating: 5
-    });
-  }
-
 }
