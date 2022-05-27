@@ -16,7 +16,7 @@
 - Directive.
 - Animations.
 
-Tiene un delay de dos segundos que se creó artificialmente con un servidor json, la idea es que se vean los spinners mientras trae la información del servidor. Desde celulares tiene problemas con ese mismo servidor json (que se incluyó en la carpeta final), por lo que no logran cargar bien las imágenes y objetos. Por lo mismo, recomiendo ver la página desde un PC.
+Tiene un delay de dos segundos que se creó artificialmente con un servidor json, la idea es que se vean los spinners mientras trae la información del servidor. Desde celulares tiene problemas con ese mismo servidor json (que se incluyó en la carpeta final), eso hace que no cargue bien las imágenes y objetos. Por lo mismo, recomiendo ver la página desde un PC.
 
 | Versión final |:
 
