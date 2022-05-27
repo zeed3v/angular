@@ -16,7 +16,7 @@
 
 | Versión final|:
 
-https://angularzee.netlify.app/home
+https://angularzee.netlify.app
 
 # Confusioncvxcv
 
