@@ -1,4 +1,4 @@
-##Versión final del curso de Angular "Front-End JavaScript Frameworks: Angular". #Materia vista:
+ -- Versión final del curso de Angular "Front-End JavaScript Frameworks: Angular" -- #Materia vista:
 
 - Componentes.
 - Data Binding.
@@ -14,11 +14,11 @@
 - Directive.
 - Animations.
 
-#Versión final:
+| Versión final|:
 
 https://angularzee.netlify.app/home
 
-# Confusion
+# Confusioncvxcv
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
